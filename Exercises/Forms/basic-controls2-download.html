@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Basic controls: Task 2</title>
+    <style>
+      body {
+        background-color: #fff;
+        color: #333;
+        font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding: 1em;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      li{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul{
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <fieldset>
+        <legend>Who is your favorite pony?</legend>
+        <ul>
+          <li>
+            <label for="pinkie">
+              <input type="radio" id="pinkie" name="pony" checked>
+              Pinkie Pie
+            </label>
+
+          </li>
+          <li>
+            <label for="rainbow">
+              <input type="radio" id="rainbow" name="pony">
+              Rainbow Dash
+            </label>
+
+          </li>
+          <li>
+            <label for="twilight">
+              <input type="radio" id="twilight" name="pony">
+              Twilight Sparkle
+            </label>
+
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Hotdog preferences</legend>
+        <ul>
+          <li>
+            <label for="vegan">
+              <input type="checkbox" id="vegan">  
+              Vegan
+            </label>
+
+          </li>
+          <li>
+            <label for="onions">
+              <input type="checkbox" id="onions">
+              Onions
+            </label>
+          </li>
+          <li>
+            <label for="under_cooked">
+              <input type="checkbox" id="under_cooked">
+              Under cooked
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+      <button>Submit</button>
+    </form>
+  </body>
+
+</html>
