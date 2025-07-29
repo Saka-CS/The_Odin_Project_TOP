@@ -1,11 +1,28 @@
 
+:root{
+    --white: white;
+    --background: #fffdfc;
+    --foreground: rgb(237, 158, 66);
+    --primary: rgb(207, 57, 17);
+}
+
+@font-face {
+  font-family: "Norse";
+  src: url(Assets/Norse-Bold.otf);
+}
+
+
 body{
     display: flex;
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
+    background-color: var(--background);
+}
 
+a{
+    color: var(--white);
 }
 
 .image-div{
@@ -20,17 +37,29 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    color: var(--white);
 }
 
 .logo{
-    background-color: rgba(0, 0, 0, 0.479);
-    
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Norse";
+    font-size: xxx-large;
+    margin-top: 30%;
 }
 .links{
-    margin-top: 100%;
+    margin: 20px auto;
 }
 
 .form-div{
     flex-grow: 5;
     flex-basis: 0;
+}
+
+form{
+    background-color: var(--foreground);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    
 }
