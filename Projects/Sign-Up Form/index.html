@@ -10,48 +10,54 @@
     <div class="image-div">
         <div class="logo">
             <img src="Assets/logo.png" alt="The Odin Project Logo" width="110px">
-            <h1 class="Odin">ODIN</h1>
+            <h1 class="odin">ODIN</h1>
         </div>
         <p class="links">Photo by <a href="https://unsplash.com/@natinati">Nataliya Melnychuk</a> on <a href="https://unsplash.com/">Unsplash</a></p>
     </div>  
 
     <div class="form-div">
-        <h1>This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. <br> Sign up <em>now</em> to get started.</h1>
-        <h1>You <em>know</em> you want to.</h1>
+        <h1 class="div-heading">This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. <br> Sign up <em>now</em> to get started.</h1>
+        <h1 class="div-heading">You <em>know</em> you want to.</h1>
 
         <form action="">
             <div>
-                <h1>Let's do this!</h1>
-                <ul>
+                <h1 class="div-heading">Let's do this!</h1>
+                <ul class="inputs">
                     <li>
                         <label for="first-name">First Name</label>
+                        <br>
                         <input type="text" id="first-name">
                     </li>
                     <li>
                         <label for="last-name">Last Name</label>
+                        <br>
                         <input type="text" id="last-name">
                     </li>
                     <li>
                         <label for="email">Email</label> 
+                        <br>
                         <input type="email" id="email">
                     </li>
                     <li>
                         <label for="phone-number">Phone Number</label>
+                        <br>
                         <input type="tel" id="phone-number">
                     </li>
                     <li>
                         <label for="password">Password</label>
-                        <input type="password" id="password">
+                        <br>
+                        <input type="password" id="password" required minlength="5">
                     </li>
                     <li>
                         <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password">
+                        <br>
+                        <input type="password" id="confirm-password" required minlength="5">
                     </li>
                 </ul>
             </div>
         </form>
-        <button type="submit">Create Account</button>
-        <p>Already have an account? <span class="main-color">Log in</span></p>
+        <button type="submit" class="div-heading">Create Account</button>
+        <p class="div-heading">Already have an account? <a class="login">Log in</a></p>
     </div>
 </body>
 </html>
