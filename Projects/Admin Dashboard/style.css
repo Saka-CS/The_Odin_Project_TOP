@@ -130,7 +130,8 @@ img{
 }
 
 .top-bar-profile {
-  width: 4em;
+  width: 5em;
+  height: 5em;
 }
 
 .top-bar-flex {
@@ -164,14 +165,14 @@ img{
 
 .page {
   display: grid;
-  grid-template: repeat(3, 1fr) / repeat(2, 2fr) 1fr;
+  grid-template: 1fr 1fr / 4fr 1fr;
   gap: 20px;
   padding: 24px;
 }
 
 .projects {
-  grid-column: 1 / 3;
-  grid-row: 1 / -1;
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
 }
 
 
@@ -205,7 +206,7 @@ img{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  grid-auto-rows: 20vh;
+  grid-auto-rows: 25vh;
   color: var(--text);
 }
 
@@ -229,7 +230,7 @@ img{
 } */
 
 .announcements {
-  grid-row: 1 / 3;
+  grid-row: 1;
 }
 
 .div-paragraph > *:not(:first-child) {
@@ -241,7 +242,7 @@ img{
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: var(--background);
-  padding: 20px 50px;
+  padding: 16px 30px;
   overflow: auto;
 }
 
@@ -250,5 +251,24 @@ img{
 }
 
 .announcement .div-paragraph {
-  padding: 24px 0;
+  padding: 12px 0;
+}
+
+.trending-card {
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: var(--background);
+  padding: 20px 30px;
+  overflow: auto;
+}
+
+.trending-person p {
+  color: var(--foreground-text);
+}
+
+.trending-card > div {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 2em;
 }
