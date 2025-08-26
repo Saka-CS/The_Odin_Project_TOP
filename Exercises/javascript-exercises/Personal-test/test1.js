@@ -15,5 +15,15 @@ function Book(title) {
 }
 
 book1 = new Book("The Hobbit");
+book2 = new Book("The Hobbit");
+
 
 console.log(book1.info());
+
+Book.prototype.name = "Hassan";
+
+console.log(book1.name)
+
+Book.prototype.name = "Not Hassan";
+
+console.log(book1.name);
