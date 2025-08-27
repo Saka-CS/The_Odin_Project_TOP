@@ -1,29 +1,23 @@
-function Book(title) {
-    if(!new.target) {
-        throw Error("You must use the 'new'operator to call the constructor")
+// animal has methods
+let animal = {
+  walk() {
+    if (!this.isSleeping) {
+      alert(`I walk`);
     }
+  },
+  sleep() {
+    this.isSleeping = true;
+  }
+};
 
-    this.title = title;
-    this.author = "J.R.R. Tolkine";
-    this.pages = 295;
-    this.read = "not read yet";
+let rabbit = {
+  name: "White Rabbit",
+  __proto__: animal
+};
 
-    this.info = function() {
-        console.log("hello world");
-        return this.title + " by " + this.author + ", " + this.pages + ", " + this.read;
-    };
-}
+// modifies rabbit.isSleeping
+rabbit.sleep();
+animal.sleep();
 
-book1 = new Book("The Hobbit");
-book2 = new Book("The Hobbit");
-
-
-console.log(book1.info());
-
-Book.prototype.name = "Hassan";
-
-console.log(book1.name)
-
-Book.prototype.name = "Not Hassan";
-
-console.log(book1.name);
+alert(rabbit.isSleeping); // true
+alert(animal.isSleeping); // undefined (no such property in the prototype)
