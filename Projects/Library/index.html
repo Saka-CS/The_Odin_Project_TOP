@@ -28,11 +28,11 @@
     </div>
 
     <div class="page">
-        <div class="header-svg">
+        <!-- <div class="header-svg">
             <svg viewbox="0 0 800 400">
                 <path fill="rgb(122, 184, 255)" d="M 0 0 Q 0 100 0 250 Q 0 350 100 350 L 800 350 L 800 0 L 0 0 "></path>
             </svg>
-        </div>
+        </div> -->
         
         <div class="content">
             <h1>Discover</h1>
@@ -42,44 +42,23 @@
             </div>
             <input type="search">
             <button>search</button>
-            <h1>Books</h1>
+            <div class="">
+                <h1>Books</h1>
+                <button>Add Book</button>
+            </div>
+
             <h2>Reading</h2>
-
-            <div class="book-list">
-                <div class="book">
-                    <div class="one-line">
-                        <h3>Title</h3>
-                        <h4>.    -</h4>
-                        <h4>Author</h4>
-                    </div>
-                    <h4>234 Pages</h4>
-                    <h4>Completed</h4>
-                    <h4>Mark As</h4>
-                    <button>Reading</button>
-                    <button>Queued</button>
-                    <button>Completed</button>
-                </div>
-                <div class="book">
-                    <div class="one-line">
-                        <h3>Title</h3>
-                        <h4>.    -</h4>
-                        <h4>Author</h4>
-                    </div>
-                    <h4>234 Pages</h4>
-                    <h4>Completed</h4>
-                    <h4>Mark As</h4>
-                    <button>Reading</button>
-                    <button>Queued</button>
-                    <button>Completed</button>
-                </div>
+            <div class="book-list" id="reading">
             </div>
+
             <h2>Queued</h2>
-            <div class="book-list">
+            <div class="book-list" id="queued">
             </div>
-            <h2>Completed</h2>
-            <div class="book-list">
-        </div>
 
+            <h2>Completed</h2>
+            <div class="book-list" id="completed">
+            </div>
+            
         </div>
     </div>
 </body>

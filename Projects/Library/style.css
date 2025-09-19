@@ -88,7 +88,7 @@ h2 {
 /* .header-svg{
   position: absolute;
   left: 0;
-  width: 100%;
+  width: 200%;
   height: 100%;
 } */
 
@@ -106,7 +106,6 @@ h2 {
 }
 
 .book {
-  /* display: grid; */
   background-color: var(--foreground);
   color: var(--text-foreground);
   padding: 16px 24px;
