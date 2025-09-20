@@ -30,54 +30,95 @@ function Book(title, author, numPages, states) {
     this.states = states;
 }
 
-function addBookToReadingLibrary(title, author, numPages, states) {
-    readingLibrary.push(new Book(title, author, numPages, states));
-    bookInformation = readingLibrary[readingLibrary.length - 1];
-    console.log(readingLibrary);
-
+function createBookElement (bookInformation){
     newBook = document.createElement('div');
     newBook.classList.add('book');
 
     titleDiv = document.createElement('div');
-    titleDiv.classList.add('one-line');
+    titleDiv.classList.add('book-title');
 
     titleDiv.innerHTML = `  <h3>${bookInformation.title}</h3>
-                            <h4><pre>    -${bookInformation.author}</h4>`;
+                            <h4>-${bookInformation.author}</h4>`;
     newBook.appendChild(titleDiv);
 
     newBook.innerHTML += `  <h4>${bookInformation.numPages} Pages</h4>
                             <h4>${bookInformation.states}</h4>
                             <h4>Mark As</h4>
-                            <button class='testing'>Reading</button>
-                            <button>Queued</button>
-                            <button>Completed</button>
+                            <button class='add-to-reading'>Reading</button>
+                            <button class='add-to-queued'>Queued</button>
+                            <button class='add-to-completed'>Completed</button>
+                            <button class='delete'>Delete</button>
                             `;
+    newBook.addEventListener('click', BookChange);
+    return newBook;
+}
 
-    // bookTitle = document.createElement('h3');
-    // bookTitle.textContent = bookInformation.title;
-    // titleDiv.appendChild(bookTitle);
-
-    // bookAuthor = document.createElement('h4');
-    // bookAuthor.innerHTML = `<pre>  -${bookInformation.author}`;
-    // titleDiv.appendChild(bookAuthor);
-    // newBook.appendChild(titleDiv);
-
-
-    // bookPages = document.createElement('h4');
-    // bookPages.textContent = bookInformation.numPages + ' Pages';
-    // newBook.appendChild(bookPages);
-
-    // bookStatus = document.createElement('h4');
-    // bookStatus.textContent = bookInformation.states;
-    // newBook.appendChild(bookStatus);
+function BookChange(evt) {
+    console.log(evt);
+    console.log(evt.target);
+    console.log(evt.currentTarget);
+    console.log(evt.target.classList.contains('add-to-reading'));
 
 
 
-    readingBooks.appendChild(newBook);
-    console.log(newBook);
+    if (evt.target.classList.contains('add-to-reading')){
+        
+    }
+    else if (evt.target.classList.contains('add-to-queued')){
+
+    }
+    else if (evt.target.classList.contains('add-to-completed')) {
+
+    }
+    else if (evt.target.classList.contains('delete')) {
+        evt.currentTarget.remove();
+    }
 
 }
 
-addBookToReadingLibrary('The Art of the Craft', '', 234, 'Reading');
-addBookToReadingLibrary('How to Build A Second Brain', 'Hassan', 234, 'Reading');
-addBookToReadingLibrary('The Art of the Craft', '', 234, 'Reading');
+
+function addBookToLibrary(title, author, numPages, states) {
+    if (states === 'Reading') {
+        readingLibrary.push(new Book(title, author, numPages, states));
+        updateReading();
+    }
+    else if (states === 'Queued') {
+        queuedLibrary.push(new Book(title, author, numPages, states));
+        updateQueued();
+    }
+    else {
+        completedLibrary.push(new Book(title, author, numPages, states));
+        updateCompleted();
+    }
+}
+
+function updateReading() {
+    readingBooks.textContent = '';
+    for (book in readingLibrary) {
+        newBook = createBookElement(readingLibrary[book]);
+        readingBooks.appendChild(newBook);
+    }
+}
+
+function updateQueued() {
+    queuedBooks.textContent = '';
+    for (book in queuedLibrary) {
+        newBook = createBookElement(queuedLibrary[book]);
+        queuedBooks.appendChild(newBook);
+    }
+}
+
+function updateCompleted() {
+    completedBooks.textContent = '';
+    for (book in completedLibrary) {
+        newBook = createBookElement(completedLibrary[book]);
+        completedBooks.appendChild(newBook);
+    }
+}
+
+
+addBookToLibrary('The Art of the Craft', 'testing', 234, 'Reading');
+addBookToLibrary('How to Build A Second Brain', 'Hassan', 234, 'Reading');
+addBookToLibrary('The Art of the Craft', 'testing', 234, 'Reading');
+addBookToLibrary('The Art of the Craft', 'testing', 234, 'Queued');
+addBookToLibrary('The Art of the Craft', 'testing', 234, 'Completed');

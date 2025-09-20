@@ -49,6 +49,7 @@ h1, h2, h3, h4, h5, h6 {
 
 :root {
   --primary: rgb(93, 137, 170);
+  --primary-hover: rgb(52, 93, 124);
   --background: rgb(255, 250, 234);
   --foreground: rgb(152, 188, 214);
   --text-background: black;
@@ -100,8 +101,8 @@ h2 {
 
 .book-list {
   display: grid;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, 400px);
+  /* width: 100%; */
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   gap: 20px;
 }
 
@@ -116,7 +117,7 @@ h2 {
   padding: 2px 0;
 }
 
-button{
+button {
   background-color: var(--primary);
   font-weight: bold;
   color: var(--text-foreground);
@@ -126,6 +127,15 @@ button{
   height: 2.1em;
 }
 
+button:hover {
+  background-color: var(--primary-hover);
+}
+
 .one-line {
   display: flex;
+}
+
+.book-title {
+  display: flex;
+  justify-content: space-between;
 }
