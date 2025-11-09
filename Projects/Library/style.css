@@ -65,6 +65,10 @@ body {
     grid-template: 1fr / auto 1fr;
 }
 
+dialog {
+  background-color: white;
+}
+
 h1 {
   font-size: 32px;
 }

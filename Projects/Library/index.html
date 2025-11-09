@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
     <div class="side-bar">
         <h1>The Books</h1>
 
@@ -44,7 +43,7 @@
             <button>search</button>
             <div class="book-title">
                 <h1>Books</h1>
-                <button>Add Book</button>
+                <button id="add-book">Add Book</button>
             </div>
 
             <h2>Reading</h2>
@@ -61,6 +60,22 @@
             
         </div>
     </div>
+
+    <dialog id="dialog">
+        <h2>Add a New Book</h2>
+        <form action="" id="add-book-form">
+            <label for="title-input">Enter the book title</label>
+            <input type="text" id="title-input" required>
+            <label for="author-input">Enter the name of the author</label>
+            <input type="text" id="author-input" required>
+            <label for="num-pages">Enter the number of pages</label>
+            <input type="text" id="num-pages" required>
+            <label for="mark">Mark the book as</label>
+            <button id="add-reading">Reading</button>
+            <button id="add-queued">Queued</button>
+            <button id="add-completed">Completed</button>
+        </form>
+    </dialog>
 </body>
 <script src="script.js"></script>
 </html>
