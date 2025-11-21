@@ -31,30 +31,41 @@ var events = {
 gameboard = (function (){
     playerX = null;
     playerO = null;
+    const gameBoard = document.querySelector('.game-board');
 
     const startGame = function(player1, player2){
         board = Array(9).fill('');
+        console.l
         gameState = 'Going';
-        last_play = '';
+        playerSign = 'O';
 
         playerX = player1;
         playerO = player2;
     }
 
-    const updateState = function(playerSign, position) {
-        if (last_play != playerSign){
-            if (board[position] === ''){
-                last_play = playerSign;
-                board[position] = playerSign;
-                console.log(board);
-                CheckState();
-            }
-            else{
-                throw new Error("This position is occupied");
-            }
+    gameBoard.addEventListener('click', function(e){
+        updateState(e.target.id[1])
+    });
+
+
+    const updateState = function(position) {
+        position = parseInt(position);
+        
+        if (board[position] == ''){
+            board[position] = playerSign;
+            displayController.update(position, playerSign)
+            CheckState();
         }
         else{
-            throw new Error("The same player tried to play twice");
+            throw new Error("This position is occupied");
+        }
+
+
+        if (playerSign === 'O'){
+            playerSign = 'X'
+        }
+        else{
+            playerSign = 'O'
         }
     }
 
@@ -98,6 +109,7 @@ gameboard = (function (){
 displayController = (function(){
     // restart, update, displayWinner, displayScore,
     const defaultState = `
+        <div id="g0"></div>
         <div id="g1"></div>
         <div id="g2"></div>
         <div id="g3"></div>
@@ -105,9 +117,10 @@ displayController = (function(){
         <div id="g5"></div>
         <div id="g6"></div>
         <div id="g7"></div>
-        <div id="g8"></div>
-        <div id="g9"></div>`
+        <div id="g8"></div>`
     const displayBoard = document.querySelector('.game-board');
+    const playerScore1 = document.querySelector('#player1-score');
+    const playerScore2 = document.querySelector('#player2-score');
     
 
     const restart = function(){
@@ -119,13 +132,18 @@ displayController = (function(){
         target.textContent = sign;
     }
 
-    return {restart, update}
+    const refreshScore = function(player1, player2){
+        playerScore1.textContent = player1.returnWin();
+        playerScore2.textContent = player2.returnWin();
+    }
+
+    return {restart, update, refreshScore}
 })();
 
 function player(name){
-    playerName = name;
-    playerID = crypto.randomUUID();
-    wins = 0;
+    let playerName = name;
+    let playerID = crypto.randomUUID();
+    let wins = 0;
     
     const incrementWin = function(){
         wins += 1;
@@ -141,10 +159,30 @@ function player(name){
 player1 = player('Saka');
 player2 = player('Moto');
 
+gameboard.startGame();
 displayController.restart();
-displayController.update(3, 'X');
-displayController.update(4, 'O');
-displayController.update(5, 'X');
+
+
+
+// displayController.update(3, 'X');
+// displayController.update(4, 'O');
+// displayController.update(5, 'X');
+// displayController.update(1, 'X');
+// displayController.update(2, 'O');
+// displayController.update(6, 'X');
+// displayController.update(7, 'X');
+// displayController.update(8, 'O');
+// displayController.update(9, 'X');
+
+displayController.refreshScore(player1, player2);
+
+player1.incrementWin();
+player2.incrementWin();
+player2.incrementWin();
+// player1.incrementWin();
+
+displayController.refreshScore(player1, player2);
+
 
 // Link the display with the game board to update content that way.
 // Make A simple design for the game that contain the game board and the score of the two players.

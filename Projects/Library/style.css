@@ -59,10 +59,10 @@ h1, h2, h3, h4, h5, h6 {
 body {
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: monospace;
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    grid-template: 1fr / auto 1fr;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template: 1fr / auto 1fr;
 }
 
 dialog {
@@ -78,8 +78,8 @@ h2 {
 }
 
 .side-bar {
-    background-color: var(--background);
-    padding: 16px 32px;
+  background-color: var(--background);
+  padding: 16px 32px;
 }
 
 .side-menu {
