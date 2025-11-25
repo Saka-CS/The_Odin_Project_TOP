@@ -29,37 +29,35 @@ var events = {
 };
 
 gameboard = (function (){
-    playerX = null;
-    playerO = null;
     const gameBoard = document.querySelector('.game-board');
+    updateBoard = function(e){
+        updateState(e.target.id[1]);
+    }
+    gameBoard.addEventListener('click', updateBoard);
 
     const startGame = function(player1, player2){
         board = Array(9).fill('');
-        console.l
-        gameState = 'Going';
         playerSign = 'O';
 
         playerX = player1;
         playerO = player2;
+        events.emit('GameStart');
     }
-
-    gameBoard.addEventListener('click', function(e){
-        updateState(e.target.id[1])
-    });
-
 
     const updateState = function(position) {
         position = parseInt(position);
         
         if (board[position] == ''){
             board[position] = playerSign;
-            displayController.update(position, playerSign)
+            events.emit('BoardUpdate', {position, playerSign});
+            // displayController.update(position, playerSign);
             CheckState();
         }
         else{
             throw new Error("This position is occupied");
         }
 
+        console.log("I got here")
 
         if (playerSign === 'O'){
             playerSign = 'X'
@@ -72,34 +70,55 @@ gameboard = (function (){
     const CheckState = function(){
         if (board[0] === board[4] && board[4] === board[8] && board[0].length !== 0){
             declareWinner(board[0]);
+            return;
         }
         else if (board[2] === board[4] && board[4] === board[6] && board[2].length !== 0){
             declareWinner(board[2]);
+            return;
         }
         else{
             for (let i = 0; i < 3; i++){
                 if(board[0 + (i * 3)] === board[1 + (i * 3)] && board[1 + (i * 3)] === board[2 + (i * 3)] && board[0 + (i * 3)].length !== 0){
                     declareWinner(board[0 + (i * 3)]);
+                    return;
                 }
             }
             for (let i = 0; i < 3; i++){
                 if(board[0 + i] === board[3 + i] && board[3 + i] === board[6 + i] && board[0 + i].length !== 0){
                     declareWinner(board[0 + i]);
+                    return;
                 }
             }
         }
+
+        noEmpty = true;
+        for (var i = 0; i < board.length; i++){
+            if (board[i] === ''){
+                console.log(board[i], i, board);
+                noEmpty = false;
+            }
+        }
+        if(noEmpty){
+            alert("Tie");
+            events.emit("GameStateChanged", {playerX, playerO});
+            startGame(playerX, playerO);
+        }
+
+        
     }
 
     const declareWinner = function(sign){
         if (sign == 'X'){
-            console.log("X has won");
+            alert("X has won");
             playerX.incrementWin();
-            events.emit("GameStateChange", 'Completed')
+            events.emit("GameStateChanged", {playerX, playerO});
+            startGame(playerX, playerO);
         }
         else{
-            console.log("O has won")
+            alert("O has won");
             playerO.incrementWin();
-            events.emit("GameStateChange", 'Completed')
+            events.emit("GameStateChanged", {playerX, playerO});
+            startGame(playerX, playerO);
         }
     }
 
@@ -121,28 +140,29 @@ displayController = (function(){
     const displayBoard = document.querySelector('.game-board');
     const playerScore1 = document.querySelector('#player1-score');
     const playerScore2 = document.querySelector('#player2-score');
-    
 
-    const restart = function(){
+    events.on('BoardUpdate', update);
+    events.on('GameStart', restart);
+    events.on('GameStateChanged', refreshScore);
+
+    function restart(){
         displayBoard.innerHTML = defaultState;
     }
 
-    const update = function(id, sign){
-        target = document.querySelector(`#g${id}`);
-        target.textContent = sign;
+    function update(data){
+        target = document.querySelector(`#g${data.position}`);
+        target.textContent = data.playerSign;
     }
 
-    const refreshScore = function(player1, player2){
-        playerScore1.textContent = player1.returnWin();
-        playerScore2.textContent = player2.returnWin();
+    function refreshScore(players){
+        playerScore1.textContent = players.playerX.returnWin();
+        playerScore2.textContent = players.playerO.returnWin();
+        restart();
     }
-
-    return {restart, update, refreshScore}
 })();
 
 function player(name){
     let playerName = name;
-    let playerID = crypto.randomUUID();
     let wins = 0;
     
     const incrementWin = function(){
@@ -159,29 +179,30 @@ function player(name){
 player1 = player('Saka');
 player2 = player('Moto');
 
-gameboard.startGame();
-displayController.restart();
+gameboard.startGame(player1, player2);
+
+// displayController.restart();
 
 
 
-// displayController.update(3, 'X');
-// displayController.update(4, 'O');
-// displayController.update(5, 'X');
-// displayController.update(1, 'X');
-// displayController.update(2, 'O');
-// displayController.update(6, 'X');
-// displayController.update(7, 'X');
-// displayController.update(8, 'O');
-// displayController.update(9, 'X');
+// // displayController.update(3, 'X');
+// // displayController.update(4, 'O');
+// // displayController.update(5, 'X');
+// // displayController.update(1, 'X');
+// // displayController.update(2, 'O');
+// // displayController.update(6, 'X');
+// // displayController.update(7, 'X');
+// // displayController.update(8, 'O');
+// // displayController.update(9, 'X');
 
-displayController.refreshScore(player1, player2);
+// displayController.refreshScore(player1, player2);
 
-player1.incrementWin();
-player2.incrementWin();
-player2.incrementWin();
 // player1.incrementWin();
+// player2.incrementWin();
+// player2.incrementWin();
+// // player1.incrementWin();
 
-displayController.refreshScore(player1, player2);
+// displayController.refreshScore(player1, player2);
 
 
 // Link the display with the game board to update content that way.
