@@ -17,10 +17,6 @@ pageContent.appendChild(homeContent);
 nav.addEventListener('click', (e) => {
     const id = e.target.id;
 
-            //     <button id="home-button">Home</button>
-            // <button id="menu-button">Menu</button>
-            // <button id="contact-button">Contact</button>
-
     if (id == 'home-button'){
         pageContent.textContent = '';
         pageContent.appendChild(homeContent);
