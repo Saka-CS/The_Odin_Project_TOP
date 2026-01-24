@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "jsdom": "^27.0.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
