@@ -6,7 +6,7 @@ import { greeting } from "./greeting.js";
 
 console.log(greeting);
 
-const image = document.createElement("img");
-image.src = odinImage;
+// const image = document.createElement("img");
+// image.src = odinImage;
    
 document.body.appendChild(image);
